@@ -19,20 +19,16 @@ function editDotfiles(){
 
 echo -n "make install directory ~/local OK? (Y/N) : "
 read anser
-if [ "$anser" != 'y' ]
+if [ "$anser" = 'y' ]
 then
-    echo "BYE!!";
-    exit 1;
+    # ベースディレクトリ作成
+    mkdir -p ~/local/etc/lib
+    mkdir -p ~/local/etc/source
+    mkdir -p ~/local/bin
+    mkdir -p ~/local/bin
+    echo -e -n "created dir "
+    tree ~/local -L 2
 fi
-
-# ベースディレクトリ作成
-mkdir -p ~/local/etc/lib
-mkdir -p ~/local/etc/source
-mkdir -p ~/local/bin
-mkdir -p ~/local/bin
-
-echo -e -n "created dir "
-tree ~/local -L 2
 
 # ruby用ディレクトリ作成+インストール
 echo -n "install Ruby? (Y/N) : "
@@ -148,7 +144,6 @@ read anser
 if [ "$anser" = 'y' ]
 then
     cd ~/local/etc
-    pwd
     git clone https://github.com/sannou-ollie/dotfiles.git
 
     # edit .bash_profile
