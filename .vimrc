@@ -124,6 +124,15 @@ let MyGrep_Key  = 'g'
 "Grepコマンドの2ストローク目キーマップ無し
 let MyGrep_KeyB = ''
 
+"ctags関連設定
+"let g:vim_tags_project_tags_command = "ctags -R -f ~/.vt_locations /var/www/projectpp2/server/pp/server/v1/ 2>/dev/null"
+" let g:vim_tags_cache_dir = expand($HOME)
+" au BufNewFile,BufRead *.php set tags+=$HOME/.vt_locations
+set tags+=$HOME/.vt_locations
+nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+
+
 if !1 | finish | endif
 
 if has('vim_starting')
@@ -134,42 +143,47 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+set runtimepath+=~/.vim/bundle//repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin('~/.vim/bundle/')
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
-call neobundle#end()
+" Add or remove your plugins here:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
 
- " Required:
-filetype plugin indent on
+" You can specify revision/branch/tag.
+call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
 
 " NeoBundle 'Shougo/unite.vim'
 " NeoBundle 'Shougo/vimproc'
-NeoBundle "osyo-manga/vim-anzu"
-NeoBundle "ctrlpvim/ctrlp.vim"
-NeoBundle "tyru/caw.vim.git"
-NeoBundle 'Align'
+call dein#add('osyo-manga/vim-anzu')
+call dein#add('ctrlpvim/ctrlp.vim')
+" call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/neomru.vim')
+call dein#add('tpope/vim-abolish')
+call dein#add('tyru/caw.vim.git')
+call dein#add('Align')
 " NeoBundle 'haya14busa/vim-easymotion'
 " NeoBundle 'soramugi/auto-ctags.vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'surround.vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tomasr/molokai'
-
-" 文字色関係設定
-set t_Co=256
-
-syntax enable
-colorscheme molokai
+call dein#add('mattn/emmet-vim')
+call dein#add('kana/vim-submode')
+call dein#add('surround.vim')
+call dein#add('sudo.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('tomasr/molokai')
+" call dein#add('szw/vim-tags')
 
 "vim-submode設定
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
@@ -187,6 +201,8 @@ nmap N <Plug>(anzu-N)
 nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
 
+map <C-n> :NERDTreeToggle<CR>
+
 " command noh noh<Plug>(anzu-clear-search-status)
 " set statusline=%{anzu#search_status()}
 " %<%f = ファイル名ロング表示
@@ -201,13 +217,27 @@ nmap # <Plug>(anzu-sharp)
 "
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%5p%%%{'['.anzu#search_status().']'}
 
-" let g:auto_ctags = 1
+" Required:
+call dein#end()
 
-" nmap s <Plug>(easymotion-s2)
-" xmap s <Plug>(easymotion-s2)
+" Required:
+filetype plugin indent on
 
-" NeoBundle 'vim-visualstar'
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+"End dein Scripts-------------------------
+
+" 文字色関係設定
+set t_Co=256
+syntax on
+set hlsearch
+
+" backspaceで文字削除
+set backspace=indent,eol,start
+
+colorscheme molokai
+"colorscheme darkblue
+
