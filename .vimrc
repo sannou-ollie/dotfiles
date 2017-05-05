@@ -132,16 +132,14 @@ set tags+=$HOME/.vt_locations
 nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
+augroup PHP
+  autocmd!
+  autocmd FileType php set makeprg=php\ -l\ %
+  " php -lの構文チェックでエラーがなければ「No syntax errors」の一行だけ出力される
+  autocmd BufWritePost *.php make | if len(getqflist()) != 1 | copen | else | cclose | endif
+augroup END
 
 if !1 | finish | endif
-
-if has('vim_starting')
-    if &compatible
-        set nocompatible               " Be iMproved
-    endif
-    " Required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
 
 "dein Scripts-----------------------------
 if &compatible
@@ -149,7 +147,7 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=~/.vim/bundle//repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin('~/.vim/bundle/')
@@ -174,13 +172,15 @@ call dein#add('ctrlpvim/ctrlp.vim')
 " call dein#add('Shougo/neomru.vim')
 call dein#add('tpope/vim-abolish')
 call dein#add('tyru/caw.vim.git')
-call dein#add('Align')
+" call dein#add('Align')
+call dein#add('vim-scripts/Align')
 " NeoBundle 'haya14busa/vim-easymotion'
 " NeoBundle 'soramugi/auto-ctags.vim'
 call dein#add('mattn/emmet-vim')
 call dein#add('kana/vim-submode')
-call dein#add('surround.vim')
-call dein#add('sudo.vim')
+" call dein#add('surround.vim')
+call dein#add('vim-scripts/surround.vim')
+" call dein#add('sudo.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomasr/molokai')
 " call dein#add('szw/vim-tags')
