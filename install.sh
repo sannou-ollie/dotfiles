@@ -37,7 +37,7 @@ if [ "$anser" = 'y' ]
 then
     mkdir -p ~/local/etc/lib/ruby-2.1.9
     wget -O ~/local/etc/source/ruby-2.1.9.tar.gz --no-check-certificate https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.gz 
-    cd local/etc/source/
+    cd ~/local/etc/source/
     tar -xvf ruby-2.1.9.tar.gz > /dev/null
     cd ruby-2.1.9
     ./configure --prefix=$HOME/local/etc/lib/ruby-2.1.9/  > /dev/null
@@ -57,7 +57,10 @@ then
     sudo yum install -y ncurses-devel
 
     cd ~/local/etc/source/
-    git clone https://github.com/vim/vim.git vim7
+    # git clone https://github.com/vim/vim.git vim7
+    wget https://ftp.nluug.nl/pub/vim/unix/vim-7.4.tar.bz2
+
+    tar -xvf vim-7.4.tar.bz2
 
     cd vim7/
     mkdir -p $HOME/local/etc/lib/vim7/
