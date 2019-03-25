@@ -62,10 +62,10 @@ then
 
     tar -xvf vim-7.4.tar.bz2
 
-    cd vim7/
-    mkdir -p $HOME/local/etc/lib/vim7/
+    cd vim74/
+    mkdir -p $HOME/local/etc/lib/vim74/
     sudo ./configure \
-        --prefix=$HOME/local/etc/lib/vim7/ \
+        --prefix=$HOME/local/etc/lib/vim74/ \
         --enable-multibyte \
         --enable-tclinterp \
         --enable-pythoninterp \
@@ -84,7 +84,7 @@ then
     make
     make install
 
-    ln -s ~/local/etc/lib/vim7/bin/* ~/local/bin
+    ln -s ~/local/etc/lib/vim74/bin/* ~/local/bin
 
     mkdir -p ~/.vim/bundle
 
