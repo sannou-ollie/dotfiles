@@ -58,7 +58,7 @@ then
 
     cd ~/local/etc/source/
     # git clone https://github.com/vim/vim.git vim7
-    wget https://ftp.nluug.nl/pub/vim/unix/vim-8.0.tar.bz2 
+    wget https://ftp.nluug.nl/pub/vim/unix/vim-8.0.tar.bz2
 
     tar -xvf vim-8.0.tar.bz2
 
@@ -90,7 +90,7 @@ then
 
     cd
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-    sh ./installer.sh ~/.vim/bundle/
+    sh ./installer.sh ~/.cache/dein
 fi
 
 

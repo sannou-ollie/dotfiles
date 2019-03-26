@@ -139,8 +139,6 @@ augroup PHP
   autocmd BufWritePost *.php make | if len(getqflist()) != 1 | copen | else | cclose | endif
 augroup END
 
-" if !1 | finish | endif
-
 
 "dein Scripts-----------------------------
 if &compatible
@@ -161,16 +159,14 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
   "call dein#add('Shougo/neosnippet-snippets')
-
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
+  call dein#add('scrooloose/nerdtree')
+  map <silent><C-n> :NERDTreeToggle<CR>
 
   call dein#add('osyo-manga/vim-anzu')
   call dein#add('ctrlpvim/ctrlp.vim')
   " call dein#add('Shougo/unite.vim')
   " call dein#add('Shougo/neomru.vim')
+
   call dein#add('tpope/vim-abolish')
   call dein#add('tyru/caw.vim.git')
   " call dein#add('Align')
@@ -182,9 +178,11 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   " call dein#add('surround.vim')
   call dein#add('vim-scripts/surround.vim')
   " call dein#add('sudo.vim')
-  call dein#add('scrooloose/nerdtree')
   call dein#add('tomasr/molokai')
   " call dein#add('szw/vim-tags')
+  "
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/vimfiler.vim')
 
   "vim-submode設定
   "call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
@@ -202,7 +200,10 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   nmap * <Plug>(anzu-star)
   nmap # <Plug>(anzu-sharp)
 
-  map <C-n> :NERDTreeToggle<CR>
+  "map <C-n> :NERDTreeToggle<CR>
+  "map <silent><C-n> :NERDTreeToggle<CR>
+  "nmap <C-n>VimFilerBufferDir -split -winwidth=35 -toggle -no-quit<CR>
+
 
   " command noh noh<Plug>(anzu-clear-search-status)
   " set statusline=%{anzu#search_status()}
