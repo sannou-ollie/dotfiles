@@ -201,7 +201,7 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   nmap # <Plug>(anzu-sharp)
 
   "map <C-n> :NERDTreeToggle<CR>
-  "map <silent><C-n> :NERDTreeToggle<CR>
+  map <silent><C-n> :NERDTreeToggle<CR>
   "nmap <C-n>VimFilerBufferDir -split -winwidth=35 -toggle -no-quit<CR>
 
 
