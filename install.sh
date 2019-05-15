@@ -11,6 +11,8 @@ function install_python3(){
   ./configure --prefix=$HOME/local/etc/lib/python3/
   make
   make install
+
+  ln -s ~/local/etc/lib/python3/bin/* ~/local/bin
 }
 
 function install_libevent2(){
