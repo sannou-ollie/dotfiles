@@ -102,6 +102,7 @@ nnoremap sw <C-w>w
 nnoremap sn gt
 nnoremap sp gT
 nnoremap st :<C-u>tabnew<CR>
+nnoremap sv :<C-u>source ~/.vimrc<CR>
 
 " 検索を現在位置に
 nnoremap * *nN
@@ -174,25 +175,29 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   " NeoBundle 'haya14busa/vim-easymotion'
   " NeoBundle 'soramugi/auto-ctags.vim'
   call dein#add('mattn/emmet-vim')
-  " call dein#add('kana/vim-submode')
+  call dein#add('kana/vim-submode')
   " call dein#add('surround.vim')
   call dein#add('vim-scripts/surround.vim')
   " call dein#add('sudo.vim')
   call dein#add('tomasr/molokai')
+  colorscheme molokai
+  call dein#add('sickill/vim-monokai')
+  call dein#add('jacoborus/tender.vim')
   " call dein#add('szw/vim-tags')
   "
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/vimfiler.vim')
+  call dein#add('Shougo/neosnippet.vim')
 
   "vim-submode設定
-  "call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-  "call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-  "call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
-  "call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
-  "call submode#map('winsize', 'n', '', '>', '<C-w>>')
-  "call submode#map('winsize', 'n', '', '<', '<C-w><')
-  "call submode#map('winsize', 'n', '', '+', '<C-w>+')
-  "call submode#map('winsize', 'n', '', '-', '<C-w>-')
+  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+  call submode#map('winsize', 'n', '', '>', '<C-w>>')
+  call submode#map('winsize', 'n', '', '<', '<C-w><')
+  call submode#map('winsize', 'n', '', '+', '<C-w>+')
+  call submode#map('winsize', 'n', '', '-', '<C-w>-')
 
   " vim-anzu 設定
   nmap n <Plug>(anzu-n)
@@ -204,6 +209,7 @@ if dein#load_state('/home/ec2-user/.cache/dein')
   map <silent><C-n> :NERDTreeToggle<CR>
   "nmap <C-n>VimFilerBufferDir -split -winwidth=35 -toggle -no-quit<CR>
 
+  let g:neosnippet#snippets_directory = '$HOME/.vim/snippets/'
 
   " command noh noh<Plug>(anzu-clear-search-status)
   " set statusline=%{anzu#search_status()}
@@ -236,10 +242,9 @@ endif
 "End dein Scripts-------------------------
 
 
-colorscheme molokai
+syntax on
 " 文字色関係設定
 set t_Co=256
-syntax on
 set hlsearch
 
 " backspaceで文字削除

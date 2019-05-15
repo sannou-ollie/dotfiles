@@ -12,7 +12,7 @@ alias gp="git pull"
 alias gr="git reset HEAD"
 alias fing="find -type f | xargs grep "
 alias ga="git add"
-alias ctg="ctags -R -f ~/.vt_locations /var/www/app/v1/"
+alias ctg="ctags -R -f ~/.vt_locations /var/www/app/server/v1/"
 alias fingrep="find -type f | xargs grep "
 alias todaylog="cat /tmp/application.log.`date +%Y%m%d`"
 
@@ -46,6 +46,5 @@ function pp() {
 function phpUnSerialize() {
     php -r "var_dump(unserialize(trim(fgets(STDIN))));"
 }
-
 
 # User specific aliases and functions

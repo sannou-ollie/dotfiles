@@ -1,5 +1,27 @@
 #/bin/bash
 
+function install_python3(){
+  wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
+  tar xvzf Python-3.6.3.tgz
+  cd Python-3.6.3
+  ./configure --prefix=$HOME/local/etc/lib/vim80/
+  make
+  make install
+}
+
+function install_libevent2(){
+    # LibEvent install
+    cd ~/local/etc/source
+    wget -O libevent2.tar.gz "https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz"
+    tar -xvf libevent2.tar.gz
+    cd libevent-2.0.22-stable/
+    mkdir -p ~/local/etc/lib/libevent2
+
+    ./configure --prefix=$HOME/local/etc/lib/libevent2/
+    make
+    make install
+}
+
 function editDotfiles(){
     if [ ! -e ~/local/etc/dotfiles/${fileName} ]
     then
@@ -16,6 +38,8 @@ function editDotfiles(){
     fi
     ln -s ~/local/etc/dotfiles/${fileName}  ~/
 }
+
+sudo yum install -y tree
 
 echo -n "make install directory ~/local OK? (Y/N) : "
 read anser
@@ -54,6 +78,8 @@ echo -n "install Vim? (Y/N) : "
 read anser
 if [ "$anser" = 'y' ]
 then
+    install_python3
+
     sudo yum install -y ncurses-devel
 
     cd ~/local/etc/source/
@@ -99,16 +125,6 @@ echo -n "install Tmux? (Y/N) : "
 read anser
 if [ "$anser" = 'y' ]
 then
-    # libEvent install
-    # cd ~/local/etc/source
-    # wget -O libevent2.tar.gz "https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz"
-    # tar -xvf libevent2.tar.gz
-    # cd libevent-2.0.22-stable/
-    # mkdir -p ~/local/etc/lib/libevent2
-    #
-    # ./configure --prefix=$HOME/local/etc/lib/libevent2/
-    # make
-    # make install
     sudo yum install -y libevent libevent-devel
 
     #tmuxインストーる
@@ -129,6 +145,9 @@ then
     # LD_LIBRARY_PATH=$HOME/local/lib/:$LD_LIBRARY_PATH
     # export LD_LIBRARY_PATH
 
+    # プラグイン関連インストール
+    mkdir -p ~/local/etc/lib/tmux22/plugin
+    git clone https://github.com/tmux-plugins/tpm ~/local/etc/lib/tmux22/plugin
 fi
 
 
