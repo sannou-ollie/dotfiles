@@ -1,10 +1,14 @@
 #/bin/bash
 
 function install_python3(){
+  cd ~/local/etc/source/
+
   wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
   tar xvzf Python-3.6.3.tgz
   cd Python-3.6.3
-  ./configure --prefix=$HOME/local/etc/lib/vim80/
+
+  mkdir -p $HOME/local/etc/lib/python3/
+  ./configure --prefix=$HOME/local/etc/lib/python3/
   make
   make install
 }
